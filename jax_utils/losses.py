@@ -30,7 +30,7 @@ def categorical_crossentropy(target: jnp.ndarray, output: jnp.ndarray, from_logi
     """
     output = lax.cond(
         from_logits,
-        lambda out: jax.nn.softmax(out),
+        jax.nn.softmax,
         lambda out: out / out.sum(axis=-1, keepdims=True),
         output
     )

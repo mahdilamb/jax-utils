@@ -13,9 +13,9 @@ def _get_version():
             '`__version__` not defined in `jax_utils/__init__.py`')
 
 
-def _parse_requirements(requirements_txt_path: os.path.join(os.path.dirname(__file__), "requirements.txt")):
-    with open(requirements_txt_path) as fp:
-        return tuple(filter(lambda line: line.lstrip()[0] in {"#", '-'}, fp.read().splitlines()))
+def _parse_requirements(requirements_txt_path: str = os.path.join(os.path.dirname(__file__), "requirements.txt")):
+    with open(requirements_txt_path, "r") as fp:
+        return list(filter(lambda line: line.lstrip()[0] not in {"#", '-'}, fp.read().splitlines()))
 
 
 setup(
