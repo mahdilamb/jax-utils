@@ -36,7 +36,7 @@ def categorical_crossentropy(target: jnp.ndarray, output: jnp.ndarray, from_logi
     )
     output = jnp.clip(output, 1e-7, 1 - 1e-7)
     eps = jnp.finfo(float).eps
-    return -jnp.sum(target * jnp.log(output + eps))
+    return jnp.sum(target * -jnp.log(output + eps), axis=-1, keepdims=False)
 
 
 def sparse_categorical_crossentropy(target, output, from_logits=False):
